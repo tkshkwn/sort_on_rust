@@ -34,5 +34,5 @@ fn main() {
     let start = Instant::now();
     let result = sort::InsertionSort.sort(target);
     let duration = start.elapsed();
-    println!("SelectionSort:{:?}, time:{:?}", result, duration);
+    println!("InsertionSort:{:?}, time:{:?}", result, duration);
 }

@@ -179,6 +179,22 @@ impl Sort for InsertionSort {
     fn sort<T: Ord + Clone>(&self, mut array: Vec<T>) -> Vec<T> {
         let len = array.len();
 
+        for i in 1..len {
+            if array[i - 1] > array[i] {
+                let mut j = i;
+                let tmp = array[i].clone();
+                loop {
+                    array[j] = array[j - 1].clone();
+                    j -= 1;
+                    if j == 0 || array[j - 1] <= tmp {
+                        break;
+                    }
+                }
+                array[j] = tmp;
+            }
+
+        }
+
         array
     }
 }

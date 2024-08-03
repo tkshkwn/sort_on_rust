@@ -41,6 +41,17 @@ impl QuickSort {
         let mut i = left;
         let mut j = right;
 
+        /* for median-of-3 */
+        if array[i] > array[pivot] {
+            array.swap(i, pivot);
+        }
+        if array[j] < array[pivot] {
+            array.swap(j, pivot);
+            if array[i] > array[pivot] {
+                array.swap(i, pivot);
+            }
+        }
+
         loop {
             while array[i] < array[pivot] {
                 i += 1;

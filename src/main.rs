@@ -17,4 +17,10 @@ fn main() {
     let result = sort::QuickSort.sort(target);
     let duration = start.elapsed();
     println!("QuickSort:{:?}, time:{:?}", result, duration);
+
+    let target = vec.clone();
+    let start = Instant::now();
+    let result = sort::MergeSort.sort(target);
+    let duration = start.elapsed();
+    println!("MergeSort:{:?}, time:{:?}", result, duration);
 }

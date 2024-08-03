@@ -172,3 +172,13 @@ impl Sort for SelectionSort {
         array
     }
 }
+
+
+pub struct InsertionSort;
+impl Sort for InsertionSort {
+    fn sort<T: Ord + Clone>(&self, mut array: Vec<T>) -> Vec<T> {
+        let len = array.len();
+
+        array
+    }
+}

@@ -152,3 +152,23 @@ impl MergeSort {
         }
     }
 }
+
+
+pub struct SelectionSort;
+impl Sort for SelectionSort {
+    fn sort<T: Ord + Clone>(&self, mut array: Vec<T>) -> Vec<T> {
+        let len = array.len();
+
+        for i in 0..len {
+            let mut min: usize = i;
+            for j in (i + 1)..len {
+                if array[j] < array[min] {
+                    min = j;
+                }
+            }
+            array.swap(i, min)
+        }
+
+        array
+    }
+}

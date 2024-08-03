@@ -23,4 +23,10 @@ fn main() {
     let result = sort::MergeSort.sort(target);
     let duration = start.elapsed();
     println!("MergeSort:{:?}, time:{:?}", result, duration);
+
+    let target = vec.clone();
+    let start = Instant::now();
+    let result = sort::SelectionSort.sort(target);
+    let duration = start.elapsed();
+    println!("SelectionSort:{:?}, time:{:?}", result, duration);
 }

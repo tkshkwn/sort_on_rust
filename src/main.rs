@@ -35,4 +35,10 @@ fn main() {
     let result = sort::InsertionSort.sort(target);
     let duration = start.elapsed();
     println!("InsertionSort:{:?}, time:{:?}", result, duration);
+
+    let target = vec.clone();
+    let start = Instant::now();
+    let result = sort::HeapSort.sort(target);
+    let duration = start.elapsed();
+    println!("HeapSort:{:?}, time:{:?}", result, duration);
 }

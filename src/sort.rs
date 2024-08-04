@@ -192,9 +192,69 @@ impl Sort for InsertionSort {
                 }
                 array[j] = tmp;
             }
-
         }
 
         array
+    }
+}
+
+
+pub struct HeapSort;
+impl Sort for HeapSort {
+    fn sort<T: Ord + Clone>(&self, mut array: Vec<T>) -> Vec<T> {
+        self.make_heap(&mut array);
+        self.sort_heap(&mut array);
+        array
+    }
+}
+
+impl HeapSort {
+    #[inline]
+    fn parent(index: usize) -> usize {
+        (index + 1) / 2 - 1
+    }
+
+    #[inline]
+    fn left_child(index: usize) -> usize {
+        (index + 1) * 2 - 1
+    }
+
+    #[inline]
+    fn right_child(index: usize) -> usize {
+        (index + 1) * 2
+    }
+
+    fn make_heap<T: Ord>(&self, array: &mut Vec<T>) {
+        let bottom = array.len() - 1;
+        let last_parent = HeapSort::parent(bottom);
+        for parent in (0..=last_parent).rev() {
+            self.down_heap(array, parent, bottom);
+        }
+    }
+
+    fn sort_heap<T: Ord>(&self, array: &mut Vec<T>) {
+        let len = array.len();
+        for bottom in (1..len).rev() {
+            array.swap(0, bottom);
+            self.down_heap(array, 0, bottom - 1);
+        }
+    }
+
+    fn down_heap<T: Ord>(&self, array: &mut Vec<T>, root: usize, bottom: usize) {
+        let mut parent = root;
+        let mut child = HeapSort::left_child(parent);
+        while child <= bottom {
+            let right_child = HeapSort::right_child(parent);
+            if right_child <= bottom && array[child] < array[right_child] {
+                child = right_child;
+            }
+
+            if array[child] > array[parent] {
+                array.swap(child, parent);
+            }
+
+            parent = child;
+            child = HeapSort::left_child(parent);
+        }
     }
 }
